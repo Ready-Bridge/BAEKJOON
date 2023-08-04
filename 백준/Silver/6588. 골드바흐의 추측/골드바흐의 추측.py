@@ -14,14 +14,11 @@ while(True) :
   if a == 0 :
     break
 
-  flag = 1
-
   for i in range(3, a, 2) :
 
     if arr[i] and arr[a - i] :
       print("%d = %d + %d"%( a, i, a - i))
-      flag = 0
       break
     
-  if flag :
+  else :
     print("Goldbach's conjecture is wrong.")
