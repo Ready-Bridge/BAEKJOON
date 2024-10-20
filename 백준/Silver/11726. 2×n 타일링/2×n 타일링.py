@@ -5,13 +5,8 @@ dp = [0] * 1001
 dp[1] = 1
 dp[2] = 2
 
-def S(i) :
-    
-    if dp[i] != 0 :
-        return dp[i]
-    
-    dp[i] = S(i - 1) + S(i - 2)
 
-    return dp[i]
+for i in range(3, n + 1) :
+    dp[i] = dp[i - 1] + dp[i - 2]
 
-print(S(n) % 10007)
+print(dp[n] % 10007)
