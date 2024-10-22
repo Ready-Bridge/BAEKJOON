@@ -1,29 +1,40 @@
-import sys
+a = input()
+b = input()
 
-x = sys.stdin.readline().strip()
-y = sys.stdin.readline().strip()
+x, y = len(a), len(b)
 
-m = len(x)
-n = len(y)
+dp = [[0] * (y + 1) for _ in range(x + 1)]
 
-dp = [[""] * (n + 1) for _ in range(m + 1)]
-
-for i in range(m) :
-    for k in range(n) :
-
-        if x[i] == y[k] :
-            dp[i][k] = dp[i - 1][k - 1] + x[i]
+for i in range(x) :
+    for k in range(y) :
+        
+        if a[i] == b[k] :
+            dp[i][k] = dp[i - 1][k - 1] + 1
         
         else :
+            dp[i][k] = max(dp[i - 1][k], dp[i][k - 1])
+    
 
-            if len(dp[i - 1][k]) >= len(dp[i][k - 1]) :
-                dp[i][k] = dp[i - 1][k]
+print(dp[x - 1][y - 1])
+
+result = []
+
+while x > 0 and y > 0 :
+
+    if a[x - 1] == b[y - 1] : 
+        result.append(a[x - 1])
+
+        x -= 1
+        y -= 1
+    
+    else :
+
+        if dp[x - 2][y - 1] >= dp[x - 1][y - 2] :
             
-            else :
-                dp[i][k] = dp[i][k - 1]
+            x -= 1
+        
+        else :
+            
+            y -= 1
 
-
-print(len(dp[m - 1][n - 1]))
-
-if len(dp[m - 1][n - 1]) > 0 :
-    print(dp[m - 1][n - 1])
+print("".join(result)[::-1])
