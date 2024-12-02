@@ -26,9 +26,8 @@ for _ in range(T):
             S.append(i)
             cnt[i] = D[i]
 
-    # 위상 정렬 (리스트 기반 큐)
-    while len(S) != 0 :
-        u = S.pop()  # 큐의 맨 앞 요소를 꺼냄 (FIFO 동작)
+    while S :
+        u = S.pop()  
 
         for v in adj[u]:
             d[v] -= 1
@@ -36,4 +35,6 @@ for _ in range(T):
             if d[v] == 0:
                 S.append(v)
 
-    print(cnt[win])  # 목표 건물까지 걸린 최대 시간 출력
+        if d[win] == 0 :
+            print(cnt[win])
+            break
