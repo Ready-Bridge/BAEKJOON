@@ -1,38 +1,43 @@
+import sys
 import math
-import heapq
+
+def find(u) :
+
+    if parent[u] == u :
+        return u
+    
+    parent[u] = find(parent[u])
+    return parent[u]
+
+def union(u, v) :
+
+    ur = find(u)
+    vr = find(v)
+
+    if ur != vr :
+        parent[vr] = ur
 
 n = int(input())
 
-node = dict() # 좌표 저장
-mst = []
-Q = []
-S = set()
-neighbors = [[0 for i in range(n)] for i in range(n)]
+parent = [i for i in range(n)]
+node = []
+edges = []
+result = 0
 
-
-for i in range(n) :
+for _ in range(n) :
     x, y = map(float, input().split())
-    node[i] = (x, y)
+    node.append((x, y))
 
-# 모든 연결 관계를 구해서 neighbors에 저장
-for i in range(n):
-    for k in range(n) :
-        w = round(math.sqrt((node[i][1] - node[k][1]) ** 2 + (node[i][0] - node[k][0]) ** 2), 2)
-        neighbors[i][k] = w
+for i in range(n - 1) :
+    for k in range(i + 1, n) :
+        w = math.sqrt((node[i][0] - node[k][0]) ** 2 + (node[i][1] - node[k][1]) ** 2)
+        edges.append((w, i, k))
 
-heapq.heappush(Q, (0, 0, None)) # weight, node, MST에 연결된 노드
+edges.sort()
 
-while Q :
-    w, u, p = heapq.heappop(Q)
+for w, u, v in edges :
+    if find(u) != find(v) :
+        union(u, v)
+        result += w
 
-    if u in S :
-        continue
-    
-    S.add(u)
-    mst.append(w) # 가중치만 넣음
-
-    for v, w_uv in enumerate(neighbors[u]) :
-        if v not in S :
-            heapq.heappush(Q, (w_uv, v, u))
-
-print(sum(mst))
+print(round(result, 2))
