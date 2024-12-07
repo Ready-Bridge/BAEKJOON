@@ -1,11 +1,16 @@
+from collections import defaultdict
+
 def find(u) :
+
     if parent[u] == u :
         return u
     
     parent[u] = find(parent[u])
     return parent[u]
 
+
 def union(u, v) :
+
     ur = find(u)
     vr = find(v)
 
@@ -15,27 +20,25 @@ def union(u, v) :
     
     print(cnt[ur])
 
+T = int(input())
 
-t = int(input())
+for _ in range(T) :
 
-# 테스트케이스 만큼 반복
-for _ in range(t) :
-
+    # 친구 수를 세는 cnt와 parent를 각각 만듬
     parent = {}
     cnt = {}
 
-    n = int(input())
-    
-    # 친구 관계 수 만큼 반복
-    for _ in range(n) :
+    F = int(input())
+
+    for _ in range(F) :
         u, v = input().split()
 
-        if u not in parent :
+        if not u in parent :
             parent[u] = u
             cnt[u] = 1
-        
-        if v not in parent :
+
+        if not v in parent :
             parent[v] = v
             cnt[v] = 1
         
-        union(u, v) # 친구 관계 합치기
+        union(u, v)
