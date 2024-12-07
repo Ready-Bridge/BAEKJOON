@@ -1,47 +1,49 @@
 import math
 
-def find(u):
-    if parents[u] == u:
-        return u
-    parents[u] = find(parents[u])
-    return parents[u]
+def find(u) :
 
-def union(u, v):
+    if parent[u] == u :
+        return u
+
+    parent[u] = find(parent[u])
+
+    return parent[u]
+
+def union(u, v) :
+
     ur = find(u)
     vr = find(v)
-    if ur != vr:
-        if ur < vr:
-            parents[vr] = ur
-        else:
-            parents[ur] = vr
 
-n, m = map(int, input().split())
+    if ur != vr :
+        parent[vr] = ur
 
-node = dict()
-parents = [x for x in range(n + 1)]
+N, M = map(int, input().split()) 
+
+node = [0]
 edges = []
+result = 0
+parent = [i for i in range(N + 1)]
 
-for i in range(1, n + 1):
-    x, y = map(int, input().split())
-    node[i] = (x, y)
+for _ in range(N) :
+    x, y = map(int, input().split()) 
+    node.append((x, y))
 
-for i in range(m):
+for i in range(M) :
     u, v = map(int, input().split())
     union(u, v)
+    
 
-for u in range(1, n + 1):
-    for v in range(u + 1, n + 1):
-        if find(u) != find(v) :
-            w = math.sqrt((node[u][1] - node[v][1]) ** 2 + (node[u][0] - node[v][0]) ** 2)
-            edges.append((u, v, w))
+for i in range(1, N) :
+    for k in range(i + 1, N + 1) :
+        w = math.sqrt((node[i][0] - node[k][0]) ** 2 + (node[i][1] - node[k][1]) ** 2)
+        edges.append((w, i , k))
 
-edges.sort(key=lambda x: x[2])
+edges.sort()
 
-sum = 0
+for w, u, v in edges :
 
-for u, v, w in edges:
-    if find(u) != find(v):
+    if find(u) != find(v) :
         union(u, v)
-        sum += w
+        result += w
 
-print("{:.2f}".format(sum))
+print("{:.2f}".format(result))
