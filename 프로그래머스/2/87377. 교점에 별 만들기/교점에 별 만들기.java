@@ -6,8 +6,8 @@ class Solution {
 
         List<int[]> gyojum = new ArrayList<>();
 
-        long minX = Long.MAX_VALUE, maxX = Long.MIN_VALUE;
-        long minY = Long.MAX_VALUE, maxY = Long.MIN_VALUE;
+        int minX = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE;
+        int minY = Integer.MAX_VALUE, maxY = Integer.MIN_VALUE;
 
         for (int i = 0; i < line.length - 1; i++) {
             long A = line[i][0], B = line[i][1], E = line[i][2];
