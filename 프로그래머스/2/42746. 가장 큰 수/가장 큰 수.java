@@ -3,25 +3,23 @@ import java.util.*;
 class Solution {
     public String solution(int[] numbers) {
         
-        String[] arr = new String[numbers.length];
+        String[] arr = Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new);
         
-        for(int i = 0; i < numbers.length; i++) {
-            arr[i] = Integer.toString(numbers[i]);
+        Arrays.sort(arr, (v1, v2) -> (v2 + v1).compareTo(v1 + v2));
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 0 ; i < arr.length; i++) {
+            sb.append(arr[i]);
         }
         
-        Arrays.sort(arr, (a, b) -> (b + a).compareTo((a + b)));
         
-        String result = "";
-        
-        for(int i = 0; i < arr.length; i++) {
-            result += arr[i];
-        }
+        String result = sb.toString();
         
         if(result.charAt(0) == '0') {
             return "0";
+        } else {
+            return result;
         }
-        
-        return result;
-        
     }
 }
