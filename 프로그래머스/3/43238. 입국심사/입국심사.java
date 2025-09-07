@@ -1,37 +1,34 @@
 class Solution {
     public long solution(int n, int[] times) {
-        long start = 1;
-        long end = (long) n * getMax(times);  
-
-        while (start < end) {
-            long mid = (start + end) / 2;
-
-            if (isValid(mid, n, times)) {
-                end = mid; 
+        int start = 1;
+        int end = 1000000000;
+        
+        while(end > start) {
+            int t = (end + start) / 2;
+            
+            if(isValid(t, n, times)) {
+                end = t;
             } else {
-                start = mid + 1;
+                start = end + 1;
             }
         }
-
+        
         return start;
     }
-
-    private boolean isValid(long t, int n, int[] times) {
-        long cnt = 0;
-        for (int time : times) {
-            cnt += t / time;
-            if (cnt >= n) {
-                return true;     
-            }
+    
+    private boolean isValid(int t, int n, int[] times) {
+        
+        int cnt = 0;
+        
+        for(int time : times) {
+            int temp = t / time;
+            cnt += temp;
         }
-        return false;
-    }
-
-    private int getMax(int[] times) {
-        int max = 0;
-        for (int time : times) {
-            max = Math.max(max, time);
+        
+        if(cnt >= n) {
+            return true;
+        } else {
+            return false;
         }
-        return max;
     }
 }

@@ -1,6 +1,6 @@
 # [level 3] 입국심사 - 43238 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/43238?gad_source=1&gad_campaignid=22681436564&gbraid=0AAAAAC_c4nDGczD64bX4kfw7ydV-CV7Ap&gclid=CjwKCAjwt-_FBhBzEiwA7QEqyGbhbx8rEUUTHKNTyW379Fky841ozMNWtXSFz3w6NiEKJhL2QT8vtBoC0r4QAvD_BwE) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/43238?gad_source=1&gad_campaignid=22499034228&gbraid=0AAAAAC_c4nCFbuE8LfCbyDoLP-0B1kbsK&gclid=Cj0KCQjw5c_FBhDJARIsAIcmHK-xBYjkFEjrQUTW073T6GORu9ClUFPGhlvRq489M00nW1dAimu9HQAaAowZEALw_wcB) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 09월 07일 12:49:50
+2025년 09월 07일 12:50:21
 
 ### 문제 설명
 
