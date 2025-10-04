@@ -50,8 +50,7 @@ class Solution {
         
         // y 내림차순, x 오름차순
         Arrays.sort(nodes, (a, b) -> {
-            if (a.y != b.y) return b.y - a.y;
-            return a.x - b.x;
+            return b.y - a.y;
         });
         
         // 트리 구성
