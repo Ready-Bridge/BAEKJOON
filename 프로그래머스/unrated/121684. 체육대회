@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Solution {
+    
+    int max = Integer.MIN_VALUE;
+    
+    void dfs(int cnt, int sum, int[][] ability, Set<Integer> banned) {
+        
+        if (cnt == ability[0].length) { 
+            if (max < sum) {
+                max = sum;
+            }
+            return;
+        }
+        
+        // i번 학생을 cnt번 종목에 배정
+        for (int i = 0; i < ability.length; i++) {
+            if (!banned.contains(i)) {
+                banned.add(i);
+                dfs(cnt + 1, sum + ability[i][cnt], ability, banned);
+                banned.remove(i); // 백트래킹
+            }
+        } 
+    }
+    
+    public int solution(int[][] ability) {
+        
+        Set<Integer> banned = new HashSet<>();
+        
+        // 0번 종목부터 배정 시작
+        dfs(0, 0, ability, banned);
+        
+        return max;
+    }
+}
